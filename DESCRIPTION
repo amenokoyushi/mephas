@@ -1,0 +1,18 @@
+Package: mephas
+Type: Package
+Title: Medical and Pharmaceutical Statistics Shiny Application 
+Version: 0.1.0
+Author: Yi
+Maintainer: Yi <zhou-y@phs.osaka-u.ac.jp>
+Description: It is a Shiny application, facilitate medical and pharmaceutical researher to anlyze their data.
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Imports: shiny,
+    ggplot2,
+    gridExtra,
+    reshape,
+    pastecs,
+    DescTools,
+    RVAideMemoire
+RoxygenNote: 6.0.1

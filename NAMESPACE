@@ -1,0 +1,16 @@
+exportPattern("^[[:alpha:]]+")
+
+# import pkgs
+import("shiny")
+import("ggplot2")
+
+# importFrom function
+importFrom("gridExtra", "grid.arrange")
+importFrom("reshape", "melt")
+importFrom("pastecs", "stat.desc")
+importFrom("DescTools", "SignTest")
+importFrom("RVAideMemoire", "mood.medtest")
+
+# export functions
+export(mfs_ttest)
+#export(mfs_nptest)
