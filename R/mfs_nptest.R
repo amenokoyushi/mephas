@@ -19,5 +19,7 @@ mfs_nptest <- function(){
 source("R/nptest_ui.R", local=TRUE)
 source("R/nptest_sv.R", local=TRUE)
 
-shinyApp(ui = ui, server = server, options = list("launch.browser"))
+app <- shinyApp(ui = ui, server = server)
+runApp(app, launch.browser=TRUE)
 }
+
