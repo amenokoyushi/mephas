@@ -3,7 +3,8 @@
 #  Non-parametric test, server
 #
 ##-------------------------------------------------------------
-server <- function(input, output) {
+server <- shinyServer(
+function(input, output) {
   options(warn = -1)
   #options(digits=4)
 
@@ -226,7 +227,5 @@ server <- function(input, output) {
     colnames(res.table) <- res$method
     return(res.table)}, width = "500px", rownames = TRUE)
 
-
-
-
 }
+)

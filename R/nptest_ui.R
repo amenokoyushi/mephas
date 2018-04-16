@@ -4,8 +4,10 @@
 #
 ##-------------------------------------------------------------
 
-ui <- tagList(
-#shinythemes::themeSelector(),
+  
+ui <- shinyUI( 
+  tagList(
+
 navbarPage(
 
 title = "Non-parametric Test",
@@ -374,3 +376,5 @@ mainPanel(
 )
 
 ))
+
+)

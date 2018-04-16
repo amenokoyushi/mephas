@@ -1,9 +1,18 @@
 ##' This is the description of this function
 ##'
 ##' This is the details of this function
-##' @title t test
-##' @return
-##' @author Yi
+##' @title T tests on one-sample and two samples
+##' @return The shiny web page of T test for one sample and two samples
+##' @import shiny
+##' @import ggplot2
+##' @importFrom gridExtra grid.arrange
+##' @importFrom reshape melt
+##' @importFrom pastecs stat.desc
+
+##' @examples 
+##' mfs_ttest()
+ 
+##' @export
 mfs_ttest <- function(){
 
   #if (!require(shiny)) {install.packages("shiny")}; library(shiny)

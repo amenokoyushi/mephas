@@ -2,3 +2,6 @@
 .DS_Store
 test.R
 test.R
+.Rproj.user
+.Rhistory
+.Rbuildignore

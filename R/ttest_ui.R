@@ -4,7 +4,8 @@
 #
 #-------------------------
 
-ui <- tagList(
+ui <- shinyUI(
+  tagList(
   # shinythemes::themeSelector(),
   navbarPage(
     #theme = shinytheme("cosmo"),
@@ -482,3 +483,4 @@ ui <- tagList(
 
           )
         )
+)

@@ -1,9 +1,19 @@
 ##' This is the description of this function
 ##'
 ##' This is the details of this function
-##' @title t test
-##' @return
-##' @author Yi
+##' @title Non-paramatric tests
+##' @return The shiny web page of non-parametric statistical test 
+##' @import shiny
+##' @import ggplot2
+##' @importFrom gridExtra grid.arrange
+##' @importFrom reshape melt
+##' @importFrom pastecs stat.desc
+##' @importFrom DescTools SignTest
+##' @importFrom RVAideMemoire mood.medtest
+
+##' @examples 
+##' mfs_nptest()
+##' @export 
 mfs_nptest <- function(){
 
   #setwd("/Users/Yi/Shiny/shiny/ttest/")
