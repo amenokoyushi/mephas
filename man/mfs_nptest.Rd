@@ -10,7 +10,7 @@ mfs_nptest()
 The shiny web page of non-parametric statistical test
 }
 \description{
-This is the description of this function
+This is the description of this function, 2
 }
 \details{
 This is the details of this function

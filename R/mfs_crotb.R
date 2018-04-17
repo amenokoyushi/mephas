@@ -3,22 +3,24 @@
 ##' This is the details of this function, 4
 ##' @title Tests for cross tab data
 ##' @return The shiny web page of the tests for cross tab data
+##'
 ##' @import shiny
 ##' @import ggplot2
+##'
 ##' @importFrom gridExtra grid.arrange
-##' @importFrom reshape melt
-##' @importFrom pastecs stat.desc
+##' @importFrom psych cohen.kappa
 
 ##' @examples
-##' mfs_btest()
+##' mfs_crotb()
 
 ##' @export
-mfs_btest <- function(){
-  
-  source("R/btest_ui.R", local = TRUE)
-  source("R/btest_sv.R", local = TRUE)
-  
+mfs_crotb <- function(){
+
+  source("ctb_ui.R", local = TRUE)
+  source("ctb_sv.R", local = TRUE)
+
   app <- shinyApp(ui = ui, server = server)
   runApp(app, launch.browser = TRUE)
-  
+
 }
+

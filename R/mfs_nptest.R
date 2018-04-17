@@ -1,10 +1,12 @@
-##' This is the description of this function
+##' This is the description of this function, 2
 ##'
 ##' This is the details of this function
 ##' @title Non-paramatric tests
 ##' @return The shiny web page of non-parametric statistical test
+
 ##' @import shiny
 ##' @import ggplot2
+
 ##' @importFrom gridExtra grid.arrange
 ##' @importFrom reshape melt
 ##' @importFrom pastecs stat.desc

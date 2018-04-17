@@ -10,7 +10,7 @@ mfs_ttest()
 The shiny web page of T test for one sample and two samples
 }
 \description{
-This is the description of this function
+This is the description of this function, 1
 }
 \details{
 This is the details of this function

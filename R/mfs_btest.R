@@ -3,8 +3,10 @@
 ##' This is the details of this function, 3
 ##' @title Tests based on binomial proportional data
 ##' @return The shiny web page of the tests based on binominal proportion
+
 ##' @import shiny
 ##' @import ggplot2
+##'
 ##' @importFrom gridExtra grid.arrange
 ##' @importFrom reshape melt
 ##' @importFrom pastecs stat.desc

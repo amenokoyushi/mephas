@@ -6,10 +6,11 @@
 ##
 ##-----------------------
 
+server <- shinyServer(
 
 function(input, output) {
   options(warn = -1)
-  options(digits= 6)
+  #options(digits= 6)
   
 
   ## 1. Chi-square test for R by C table ----------------------------------------------------------------------------------------
@@ -20,28 +21,33 @@ T = reactive({ # prepare dataset
   colnames(T) = unlist(strsplit(input$cn, "[\n, \t, ]"))
   return(T)})
 
-output$ct = renderDataTable({addmargins(T(), margin = seq_along(dim(T())), FUN = sum, quiet = TRUE)},  width = "50" ,rownames = TRUE)
+output$ct = renderDataTable({addmargins(T(), margin = seq_along(dim(T())), FUN = sum, quiet = TRUE)})
 
 output$c.test = renderTable({
-    x = T()
-    res = chisq.test(x, correct = FALSE)
-    res.table = t(data.frame(X_statistic = res$statistic,                            
-                              Degree_of_freedom = res$parameter,
-                              P_value = res$p.value))
-    res1 = chisq.test(x, correct = TRUE)
-    res1.table = t(data.frame(X_statistic = res1$statistic,                            
-                              Degree_of_freedom = res1$parameter,
-                              P_value = res1$p.value))
-    res2.table = cbind(res.table, res1.table)
-    colnames(res2.table) <- c(res$method, res1$method)
-    return(res2.table)}, rownames = TRUE)
+  x = T()
+  res = chisq.test(x, correct = FALSE)
+  res.table = t(data.frame(
+    X_statistic = res$statistic,                            
+    Degree_of_freedom = res$parameter,
+    P_value = res$p.value))
+
+  res1 = chisq.test(x, correct = TRUE)
+  res1.table = t(data.frame(
+    X_statistic = res1$statistic,                            
+    Degree_of_freedom = res1$parameter,
+    P_value = res1$p.value))
+
+  res2.table = cbind(res.table, res1.table)
+  colnames(res2.table) <- c(res$method, res1$method)
+  return(res2.table)}, 
+  rownames = TRUE)
 
 output$c.e = renderTable({
   x = T()
   res = chisq.test(x, correct = FALSE)
   exp = res$expected
-  return(exp)
-}, rownames = TRUE, digits = 4)
+  return(exp)}, 
+  rownames = TRUE, digits = 4)
 
 output$prt = renderTable({prop.table(T(), 1)}, width = "50" ,rownames = TRUE, digits = 4)
 
@@ -54,6 +60,7 @@ output$makeplot <- renderPlot({  #shinysession
     mx <- reshape(x, varying = list(names(x)), times = names(x), ids = row.names(x), direction = "long")
     plot1 = ggplot(mx, aes(x = time, y = mx[,2], fill = id))+geom_bar(stat = "identity", position = position_dodge()) + ylab("Counts") + xlab("") + labs(fill = "") + theme_minimal() + scale_fill_brewer(palette = "Paired")
     plot2 = ggplot(mx, aes(x = id, y = mx[,2], fill = time))+geom_bar(stat = "identity", position = position_dodge()) + ylab("Counts") + xlab("") + labs(fill = "") + theme_minimal() + scale_fill_brewer(palette = "Paired")
+    
     grid.arrange(plot1, plot2, ncol=2)})
 
 ## 2. Chi-square test for 2 by C table ----------------------------------------------------------------------------------------
@@ -73,23 +80,26 @@ TR = reactive({ # prepare dataset
     })
 
 #output$ct.tr = renderDataTable({addmargins(TR(), margin = seq_along(dim(TR())), FUN = sum, quiet = TRUE)},  width = "50" ,rownames = TRUE)
-output$ct.tr = renderDataTable({t(TR())}, rownames = TRUE)
+output$ct.tr = renderDataTable({t(TR())})
 
 #output$pct.tr = renderTable({prop.table(TR(), 2)}, width = "50" ,rownames = TRUE, digits = 4)
 
 output$tr.test = renderTable({
   x = TR()
   res = prop.trend.test(x$Case, x$Total)
-  res.table = t(data.frame(X_statistic = res$statistic,                            
-                            Degree_of_freedom = res$parameter,
-                            P_value = res$p.value))
+  res.table = t(data.frame(
+    X_statistic = res$statistic,                            
+    Degree_of_freedom = res$parameter,
+    P_value = res$p.value))
   colnames(res.table) <- c(res$method)
-    return(res.table)}, rownames = TRUE)
+  return(res.table)}, 
+  rownames = TRUE)
 
 output$makeplot.tr <- renderPlot({  #shinysession 
-    x <- TR()
-    ggplot(x, aes(x = rownames(x), y = Percentage))+geom_bar(stat = "identity", width = 0.5, position = position_dodge()) + ylab("Proportion") + xlab("") + labs(fill = "") + theme_minimal() + scale_fill_brewer(palette = "Paired")
-})
+  x <- TR()
+  ggplot(x, aes(x = rownames(x), y = Percentage))+geom_bar(stat = "identity", width = 0.5, position = position_dodge()) + 
+    ylab("Proportion") + xlab("") + labs(fill = "") + theme_minimal() + scale_fill_brewer(palette = "Paired")
+  })
 
 ## 3. Kappa test for K by K table ----------------------------------------------------------------------------------------
 
@@ -100,17 +110,19 @@ K = reactive({ # prepare dataset
   colnames(T) = unlist(strsplit(input$rater, "[\n, \t, ]"))
   return(T)})
 
-output$kt = renderDataTable({addmargins(K(), margin = seq_along(dim(K())), FUN = sum, quiet = TRUE)},  width = "50" ,rownames = TRUE)
+output$kt = renderDataTable({addmargins(K(), margin = seq_along(dim(K())), FUN = sum, quiet = TRUE)})
 
 output$k.test = renderTable({
 
   x = K()
   k = cohen.kappa(x)
-  res.table = data.frame(k.estimate = c(round(k$kappa, digits = 4), round(k$weighted.kappa, digits = 4)),
-               CI.0.95 = c(paste0("(",round(k$confid[1], digits = 4),", ",round(k$confid[5], digits = 4), ")"),
-                          paste0("(",round(k$confid[2], digits = 4),", ",round(k$confid[6], digits = 4), ")")),
-               row.names = c("Kappa", "Weighted.kappa"))
+  res.table = data.frame(
+    k.estimate = c(round(k$kappa, digits = 4), round(k$weighted.kappa, digits = 4)),
+    CI.0.95 = c(paste0("(",round(k$confid[1], digits = 4),", ",round(k$confid[5], digits = 4), ")"), 
+      paste0("(",round(k$confid[2], digits = 4),", ",round(k$confid[6], digits = 4), ")")),
+    row.names = c("Kappa", "Weighted.kappa"))
   return(res.table)}, rownames = TRUE)
 
 
 }
+)
