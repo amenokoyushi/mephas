@@ -21,8 +21,8 @@
 ##' @export
 mfs_ureg<- function(){
 
-  source("ureg_ui.R", local = TRUE)
-  source("ureg_sv.R", local = TRUE)
+  source("R/ureg_ui.R", local = TRUE)
+  source("R/ureg_sv.R", local = TRUE)
 
   app <- shinyApp(ui = ui, server = server)
   runApp(app, launch.browser = TRUE, quiet = TRUE)

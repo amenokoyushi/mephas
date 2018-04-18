@@ -5,15 +5,22 @@ Date: 2018-04-16
 Author: Yi
 Maintainer: Yi <zhou-y@phs.osaka-u.ac.jp>
 Depends:
-    R (>= 3.1.0)
-Imports: 
+    R (>= 3.1.0),
+Imports:
     shiny,
     ggplot2,
+    survival,
+    survminer,
+    ggfortify,
+    DescTools,
     gridExtra,
     reshape,
     pastecs,
-    DescTools,
-    RVAideMemoire
+    RVAideMemoire,
+    xtable,
+    ROCR,
+    psych,
+    stargazer
 Description: It is a Shiny application, facilitate medical and pharmaceutical researcher to analyze their data.
 License: MIT
 Encoding: UTF-8

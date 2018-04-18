@@ -16,8 +16,8 @@
 ##' @export
 mfs_crotb <- function(){
 
-  source("ctb_ui.R", local = TRUE)
-  source("ctb_sv.R", local = TRUE)
+  source("R/ctb_ui.R", local = TRUE)
+  source("R/ctb_sv.R", local = TRUE)
 
   app <- shinyApp(ui = ui, server = server)
   runApp(app, launch.browser = TRUE)

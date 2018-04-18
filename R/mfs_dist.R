@@ -14,8 +14,8 @@
 ##' @export
 mfs_dist<- function(){
 
-  source("condist_ui.R", local = TRUE)
-  source("condist_sv.R", local = TRUE)
+  source("R/dist_ui.R", local = TRUE)
+  source("R/dist_sv.R", local = TRUE)
 
   app <- shinyApp(ui = ui, server = server)
   runApp(app, launch.browser = TRUE)
